@@ -16,15 +16,16 @@ class IntToWordsTest < MiniTest::Test
 
     it "should handle the tens" do
       36.to_words.must_equal("thirty six")
-      70.to_words.must_equal("seventy")
+      70.to_words.must_equal("seventy ")
     end
 
     it "should handle hundreds" do
       123.to_words.must_equal("one hundred twenty three")
-      100.to_words.must_equal("one hundred")
+      491.to_words.must_equal("four hundred ninety one")
+      100.to_words.must_equal("one hundred ")
     end
 
-    it "should handle hundreds" do
+    it "should handle thousands" do
       1123.to_words.must_equal("one thousand one hundred twenty three")
       1100.to_words.must_equal("one thousand one hundred")
       1000.to_words.must_equal("one thousand")
