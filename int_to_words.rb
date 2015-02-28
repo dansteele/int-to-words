@@ -26,7 +26,7 @@ class Fixnum
     when 10000...100000
       # puts "tens thousand and .."
     when 1000...10000
-      # puts "units thousand and ..."
+      output = less_than_ten_thousand(self)
     when 100...1000
       output = less_than_one_thousand(self)
     when 10, 20...100
@@ -39,13 +39,18 @@ class Fixnum
   output
   end
 
+  def less_than_ten_thousand(n)
+    thousands, rest = n.div(1000)
+    rest = less_than_one_thousand(n % 1000) unless (n % 1000 == 0)
+    "#{Fixnum.units[thousands]} thousand #{rest}"
+  end
+
   def less_than_one_thousand(n)
     hundreds, rest = n.div(100), less_than_one_hundred(n % 100)
     "#{Fixnum.units[hundreds]} hundred #{rest}"
   end
 
   def less_than_one_hundred(n)
-    binding.pry
     if n == 0
       return ""
     end

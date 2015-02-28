@@ -27,8 +27,9 @@ class IntToWordsTest < MiniTest::Test
 
     it "should handle thousands" do
       1123.to_words.must_equal("one thousand one hundred twenty three")
-      1100.to_words.must_equal("one thousand one hundred")
-      1000.to_words.must_equal("one thousand")
+      1100.to_words.must_equal("one thousand one hundred ")
+      1000.to_words.must_equal("one thousand ")
+      9999.to_words.must_equal("nine thousand nine hundred ninety nine")
     end
 
   end
