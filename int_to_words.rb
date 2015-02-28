@@ -1,25 +1,16 @@
-require "pry"
-
 class Fixnum
-
   def self.units
     ['','one','two','three','four','five','six','seven','eight','nine']
   end
-
   def self.teens
     ['eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']
   end
-
   def self.tens
     ['ten','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety']
   end
 
-
   def to_words
-
   output = ""
-
-
   case self
     when 100000...1000000
       output = less_than_million(self)
@@ -36,7 +27,6 @@ class Fixnum
   end
 
   def less_than_million(n)
-    ##{less_than_one_hundred(n.div(1000))}
     "#{less_than_one_thousand(n.div(1000))}#{less_than_ten_thousand(n)}"
   end
 
@@ -71,5 +61,8 @@ class Fixnum
     end
     "#{Fixnum.tens[first-1]} #{unit}"
   end
+end
 
+while true
+  puts gets.to_i.to_words
 end
