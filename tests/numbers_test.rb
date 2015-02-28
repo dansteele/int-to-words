@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require '../int_to_words'
+require './int_to_words'
 
 class IntToWordsTest < MiniTest::Test
   describe "to_words" do
@@ -12,6 +12,11 @@ class IntToWordsTest < MiniTest::Test
     it "should handle the teens" do
       16.to_words.must_equal("sixteen")
       19.to_words.must_equal("nineteen")
+    end
+
+    it "should handle the tens" do
+      36.to_words.must_equal("thirty six")
+      70.to_words.must_equal("seventy")
     end
 
     it "should handle hundreds" do

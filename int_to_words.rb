@@ -9,20 +9,25 @@ class Fixnum
 
   case self
     when 100000...1000000
-      puts "x hundred thousand and..."
+      # puts "x hundred thousand and..."
     when 10000...100000
-      puts "tens thousand and .."
+      # puts "tens thousand and .."
     when 1000...10000
-      puts "units thousand and ..."
+      # puts "units thousand and ..."
     when 100...1000
-      puts "units hundred and ... "
+      # puts "units hundred and ... "
     when 10, 20...100
-      puts "tens units"
-    when 11...20
-      puts "teen"
-    when 0...10
-      puts "unit"
-    end
+      first, second = self.div(10), self % 10
+      if second > 0
+        unit = units[second]
+      end
+      output = "#{tens[first-1]} #{unit}"
 
+    when 11...20
+      output = teens[self - 11]
+    when 0...10
+      output = units[self]
+    end
+  output
   end
 end
