@@ -3,7 +3,7 @@ require "pry"
 class Fixnum
 
   def self.units
-    ['zero','one','two','three','four','five','six','seven','eight','nine']
+    ['','one','two','three','four','five','six','seven','eight','nine']
   end
 
   def self.teens
@@ -22,7 +22,7 @@ class Fixnum
 
   case self
     when 100000...1000000
-      # puts "x hundred thousand and..."
+      output = less_than_million(self)
     when 10000...100000
       output = less_than_hundred_thousand(self)
     when 1000...10000
@@ -35,19 +35,25 @@ class Fixnum
   output.squeeze(' ').rstrip
   end
 
+  def less_than_million(n)
+    ##{less_than_one_hundred(n.div(1000))}
+    "#{less_than_one_thousand(n.div(1000))}#{less_than_ten_thousand(n)}"
+  end
+
   def less_than_hundred_thousand(n)
     "#{less_than_one_hundred(n.div(1000))}#{less_than_ten_thousand(n)}"
   end
 
   def less_than_ten_thousand(n)
-    thousands = n.div(1000)
-    rest = less_than_one_thousand(n % 1000) unless (n % 1000 == 0)
-    "#{Fixnum.units[thousands]} thousand #{rest}"
+    out = Fixnum.units[n.div(1000)] unless n.div(1000) == 0
+    rest = less_than_one_thousand(n % 1000) unless n % 1000 == 0
+    "#{out} thousand #{rest}"
   end
 
   def less_than_one_thousand(n)
-    hundreds, rest = n.div(100), less_than_one_hundred(n % 100)
-    "#{Fixnum.units[hundreds]} hundred #{rest}"
+    out = Fixnum.units[n.div(100)] + ' hundred' unless n.div(100) == 0
+    rest = less_than_one_hundred(n % 100) unless n % 100 == 0
+    "#{out} #{rest}"
   end
 
   def less_than_one_hundred(n)

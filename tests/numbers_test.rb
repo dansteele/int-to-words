@@ -39,5 +39,13 @@ class IntToWordsTest < MiniTest::Test
       99999.to_words.must_equal("ninety nine thousand nine hundred ninety nine")
     end
 
+    it "should handle hundreds of thousands" do
+      140137.to_words.must_equal("one hundred fourty thousand one hundred thirty seven")
+      100000.to_words.must_equal("one hundred thousand")
+      105000.to_words.must_equal("one hundred five thousand")
+      100005.to_words.must_equal("one hundred thousand five")
+      999999.to_words.must_equal("nine hundred ninety nine thousand nine hundred ninety nine")
+    end
+
   end
 end
