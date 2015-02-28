@@ -62,7 +62,6 @@ class Fixnum
     "#{Fixnum.tens[first-1]} #{unit}"
   end
 end
-
 while true
   puts gets.to_i.to_words
 end
