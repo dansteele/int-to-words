@@ -22,8 +22,8 @@ class Fixnum
       output = less_than_one_thousand(self)
     when 0..100
       output = less_than_one_hundred(self)
-    end
-  output.squeeze(' ').rstrip
+  end
+  output.squeeze(' ').rstrip#.rstrip('and ').gsub('thousand', 'thousand and ')
   end
 
   def less_than_million(n)
@@ -31,7 +31,7 @@ class Fixnum
   end
 
   def less_than_hundred_thousand(n)
-    "#{less_than_one_hundred(n.div(1000))}#{less_than_ten_thousand(n)}"
+    "#{n.div(1000).to_words}#{less_than_ten_thousand(n)}"
   end
 
   def less_than_ten_thousand(n)
@@ -61,7 +61,4 @@ class Fixnum
     end
     "#{Fixnum.tens[first-1]} #{unit}"
   end
-end
-while true
-  puts gets.to_i.to_words
 end
