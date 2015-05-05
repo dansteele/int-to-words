@@ -1,4 +1,6 @@
 #Integer-to-words
+##Completion time: 1 day
+####A few weeks into the WGC course
 
 The brief for this project was to write a script that would turn any int input from 0-1m into a text output, so
 `123567 => one hundred twenty-three thoustand five-hundred and sixty seven`
@@ -8,3 +10,4 @@ You can also try running the demo.rb.
 
 ###This is a revised version
 My initial attempt worked about 95% of the time, and was **714** lines long. Condensed, this one is about 60.
+
