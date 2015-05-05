@@ -1,2 +1,10 @@
-# int-to-words
-This is a fresh attempt at the numbers to words program. The idea is that you give this program an integer &lt; 1m and it will spit out that number in words.
+#Integer-to-words
+
+The brief for this project was to write a script that would turn any int input from 0-1m into a text output, so
+`123567 => one hundred twenty-three thoustand five-hundred and 67`
+
+You can view the [tests](https://github.com/dansteele/int-to-words/blob/master/tests/numbers_test.rb) to see what the expected result for a given input is.
+You can also try running the demo.rb.
+
+###This is a revised version
+My initial attempt worked about 95% of the time, and was **714** lines long. Condensed, this one is about 60.
