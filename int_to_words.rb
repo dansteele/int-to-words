@@ -1,29 +1,22 @@
 class Fixnum
-  def self.units
-    ['','one','two','three','four','five','six','seven','eight','nine']
-  end
-  def self.teens
-    ['eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']
-  end
-  def self.tens
-    ['ten','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety']
-  end
+
+  UNITS = %w(\  one two three four five six seven eight nine)
+  TEENS = %w(eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen)
+  TENS = %w(ten twenty thirty fourty fifty sixty seventy eighty ninety)
 
   def to_words
-  output = ""
-  case self
+    case self
     when 100000...1000000
-      output = less_than_million(self)
+      less_than_million(self)
     when 10000...100000
-      output = less_than_hundred_thousand(self)
+      less_than_hundred_thousand(self)
     when 1000...10000
-      output = less_than_ten_thousand(self)
+      less_than_ten_thousand(self)
     when 100...1000
-      output = less_than_one_thousand(self)
+      less_than_one_thousand(self)
     when 0..100
-      output = less_than_one_hundred(self)
-  end
-  output.squeeze(' ').rstrip#.rstrip('and ').gsub('thousand', 'thousand and ')
+      less_than_one_hundred(self)
+    end.squeeze(' ').rstrip
   end
 
   def less_than_million(n)
@@ -35,30 +28,24 @@ class Fixnum
   end
 
   def less_than_ten_thousand(n)
-    out = Fixnum.units[n.div(1000)] unless n.div(1000) == 0
+    out = UNITS[n.div(1000)] unless n.div(1000) == 0
     rest = less_than_one_thousand(n % 1000) unless n % 1000 == 0
     "#{out} thousand #{rest}"
   end
 
   def less_than_one_thousand(n)
-    out = Fixnum.units[n.div(100)] + ' hundred' unless n.div(100) == 0
+    hundred = UNITS[n.div(100)] + ' hundred' unless n.div(100) == 0
     rest = less_than_one_hundred(n % 100) unless n % 100 == 0
-    "#{out} #{rest}"
+    "#{hundred} #{rest}"
   end
 
   def less_than_one_hundred(n)
-    if n == 0
-      return ""
-    end
-    if n.between?(11, 20)
-      return "#{Fixnum.teens[n - 11]}"
-    elsif n.between?(-1, 9)
-      return "#{Fixnum.units[n]}"
-    end
+    return if n == 0
+    return "#{TEENS[n - 11]}" if n.between?(11, 20)
+    return "#{UNITS[n]}" if n.between?(-1, 9)
+
     first, second = n.div(10), n % 10
-    if second > 0
-      unit = Fixnum.units[second]
-    end
-    "#{Fixnum.tens[first-1]} #{unit}"
+    unit = UNITS[second] if second > 0
+    "#{TENS[first-1]} #{unit}"
   end
 end
